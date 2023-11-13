@@ -66,6 +66,31 @@ vector<int> solutionCyclicRotation(vector<int> &A, int K) {
     
     return res;
 }
+
+/* Lesson 2: Arrays - OddOccurrencesInArray */
+
+int solutionOddOccurrencesInArray(vector<int> &A) {
+    int n = A.size();
+    
+    if (n == 1) { return A[0]; }
+    
+    int cnt = 1;
+    sort(A.begin(), A.end());
+    
+    for (int i=0; i<n-1; i++){
+        if (A[i] == A[i+1]){
+            cnt++;
+        } else {
+            if (cnt % 2 == 1) {
+                return A[i];
+            }
+            cnt = 1;
+        }
+    }
+    
+    return A[n-1];
+}
+
 int main(int argc, const char * argv[]) {
     int res = solution(999);
     cout << res;
