@@ -8,6 +8,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <limits.h>
 
 using namespace std;
 
@@ -131,6 +132,33 @@ int solutionPermMissingElem(vector<int> &A) {
     }
     
     return n+1;
+}
+
+
+/* =========================================== */
+/* Lesson 3: Time Complexity - TapeEquilibrium */
+/* =========================================== */
+
+int solutionTapeEquilibrium(vector<int> &A) {
+    int n = A.size();
+    int min = abs(A[0] - A[1]);
+    if (n==2) { return min; }
+    
+    int sum = 0, sumA = 0, sumB = 0;
+    min = INT_MAX;
+    
+    for(int i=0; i<n; i++) { sum += A[i]; }
+    
+    for(int i=0; i<n-1; i++) {
+        sumA += A[i];
+        sumB = sum - sumA;
+        int ab = abs(sumA-sumB);
+        if(ab<min) {
+            min=ab;
+        }
+    }
+    
+    return min;
 }
 
 int main(int argc, const char * argv[]) {
