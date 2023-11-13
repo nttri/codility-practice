@@ -161,6 +161,32 @@ int solutionTapeEquilibrium(vector<int> &A) {
     return min;
 }
 
+
+/* ========================================== */
+/* Lesson 4: Counting elements - FrogRiverOne */
+/* ========================================== */
+// X=5, v = {1,3,1,4,2,3,5,4} ==> 6
+// X=5, v = {1,3,1,4,2,3,2,4} ==> -1
+
+// 90% only
+int solutionFrogRiverOne(int X, vector<int> &A) {
+    int n = A.size();
+    string str(X, '0');
+    string strEx(X, '1');
+
+    for(int i=0; i<n; i++) {
+        int j = A[i] - 1;
+        if(str[j] == '0') {
+            str[j] = '1';
+            if(str == strEx) {
+                return i;
+            }
+        }
+    }
+
+    return -1;
+}
+
 int main(int argc, const char * argv[]) {
     int res = solution(999);
     cout << res;
