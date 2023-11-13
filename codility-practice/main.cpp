@@ -114,6 +114,25 @@ int solutionFrogJmp(int X, int Y, int D) {
     return dis/D + 1;
 }
 
+
+/* =========================================== */
+/* Lesson 3: Time Complexity - PermMissingElem */
+/* =========================================== */
+
+int solutionPermMissingElem(vector<int> &A) {
+    int n = A.size();
+    if (n==0) { return 1; }
+    sort(A.begin(), A.end());
+    
+    for(int i=0; i<n; i++) {
+        if (A[i] != i+1){
+            return i+1;
+        }
+    }
+    
+    return n+1;
+}
+
 int main(int argc, const char * argv[]) {
     int res = solution(999);
     cout << res;
