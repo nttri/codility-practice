@@ -11,7 +11,9 @@
 
 using namespace std;
 
+/* ================================ */
 /* Lesson 1: Iterations - BinaryGap */
+/* ================================ */
 
 string toBinary(int n)
 {
@@ -39,7 +41,10 @@ int solutionBinaryGap(int N) {
     return max;
 }
 
+
+/* ================================= */
 /* Lesson 2: Arrays - CyclicRotation */
+/* ================================= */
 
 vector<int> solutionCyclicRotation(vector<int> &A, int K) {
     int n = A.size();
@@ -67,7 +72,10 @@ vector<int> solutionCyclicRotation(vector<int> &A, int K) {
     return res;
 }
 
+
+/* ======================================== */
 /* Lesson 2: Arrays - OddOccurrencesInArray */
+/* ======================================== */
 
 int solutionOddOccurrencesInArray(vector<int> &A) {
     int n = A.size();
