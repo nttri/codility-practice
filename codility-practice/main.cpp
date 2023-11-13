@@ -91,6 +91,21 @@ int solutionOddOccurrencesInArray(vector<int> &A) {
     return A[n-1];
 }
 
+
+/* =================================== */
+/* Lesson 3: Time Complexity - FrogJmp */
+/* =================================== */
+
+int solutionFrogJmp(int X, int Y, int D) {
+    if (X == Y) { return 0; }
+    
+    int dis = Y-X;
+    if (dis%D == 0) {
+        return dis/D;
+    }
+    return dis/D + 1;
+}
+
 int main(int argc, const char * argv[]) {
     int res = solution(999);
     cout << res;
