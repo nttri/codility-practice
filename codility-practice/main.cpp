@@ -6,6 +6,7 @@
 //
 
 #include <iostream>
+#include <vector>
 #include <algorithm>
 
 using namespace std;
@@ -19,7 +20,7 @@ string toBinary(int n)
     return r;
 }
 
-int solution(int N) {
+int solutionBinaryGap(int N) {
     int max = 0, cnt = 0;
     string strN = toBinary(N);
     
@@ -38,6 +39,33 @@ int solution(int N) {
     return max;
 }
 
+/* Lesson 2: Arrays - CyclicRotation */
+
+vector<int> solutionCyclicRotation(vector<int> &A, int K) {
+    int n = A.size();
+    int k = K;
+    vector<int> res(n);
+    
+    if (n <= 1 || k == 0) { return A; }
+    
+    if (k > n) {
+        k = K % n;
+    }
+    
+    if (k == 0) {
+        return A;
+    }
+    
+    for(int i=0; i<n; i++) {
+        if (i-k < 0) {
+            res[i] = A[n-k+i];
+        } else {
+            res[i] = A[i-k];
+        }
+    }
+    
+    return res;
+}
 int main(int argc, const char * argv[]) {
     int res = solution(999);
     cout << res;
