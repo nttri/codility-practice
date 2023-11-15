@@ -203,6 +203,33 @@ int solutionPermCheck(vector<int> &A) {
     return 1;
 }
 
+
+/* =============================================== */
+/* Lesson 4: Counting elements - MaxCounters [Med] */
+/* =============================================== */
+
+// 77% only
+vector<int> solutionMaxCounters(int N, vector<int> &A) {
+    int nA = A.size();
+    vector<int> res(N,0);
+    int currentMax = 0;
+    
+    for(int i=0; i<nA; i++) {
+        if(A[i] == N+1) {
+            res = {};
+            vector<int> newV(N, currentMax);
+            res = newV;
+            continue;
+        }
+        res[A[i]-1]++;
+        if(currentMax < res[A[i]-1]) {
+            currentMax = res[A[i]-1];
+        }
+    }
+    
+    return res;
+}
+
 int main(int argc, const char * argv[]) {
     int res = solution(999);
     cout << res;
