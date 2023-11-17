@@ -230,6 +230,39 @@ vector<int> solutionMaxCounters(int N, vector<int> &A) {
     return res;
 }
 
+
+/* ================================================== */
+/* Lesson 4: Counting elements - MissingInteger [Med] */
+/* ================================================== */
+
+int solutionMissingInteger(vector<int> &A) {
+    vector<int> B;
+    
+    for (int a : A) {
+        if (a>0) {
+            B.push_back(a);
+        }
+    }
+    
+    int nB = B.size();
+    if (nB == 0) { return 1; }
+    
+    sort(B.begin(), B.end());
+    
+    if (B[0] != 1) { return 1; }
+    
+    if (nB == 1) { return B[0] + 1; }
+    
+    for (int i=0; i<nB - 1; i++) {
+        int d = B[i+1] - B[i];
+        if (d>1) {
+            return B[i] + 1;
+        }
+    }
+    
+    return B[nB - 1] + 1;
+}
+
 int main(int argc, const char * argv[]) {
     int res = solution(999);
     cout << res;
