@@ -263,6 +263,30 @@ int solutionMissingInteger(vector<int> &A) {
     return B[nB - 1] + 1;
 }
 
+
+/* =================================== */
+/* Lesson 5: Prefix sums - PassingCars */
+/* =================================== */
+
+int solutionPassingCars(vector<int> &A) {
+    int n = A.size();
+    
+    if (n==1) { return 0; }
+    
+    int zero = 0, cnt = 0;
+    
+    for (int i=0; i<n; i++) {
+        if (A[i]==0) {
+            zero++;
+        } else {
+            cnt = cnt + zero;
+            if (cnt > 1000000000) { return -1; }
+        }
+    }
+    
+    return cnt;
+}
+
 int main(int argc, const char * argv[]) {
     int res = solution(999);
     cout << res;
