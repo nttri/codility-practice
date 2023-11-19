@@ -343,6 +343,39 @@ vector<int> solutionGenomicRangeQuery(string &S, vector<int> &P, vector<int> &Q)
     return res;
 }
 
+
+/* ============================================ */
+/* Lesson 5: Prefix sums - MinAvgTwoSlice [Med] */
+/* ============================================ */
+
+// 60% only
+float avgTwoSlice(vector<int> &A, int P, int Q) {
+    int sum = 0;
+    for(int i=P; i<=Q; i++) {
+        sum += A[i];
+    }
+    float avg = (sum * 1.0) / (Q-P+1);
+    return avg;
+}
+
+int solutionMinAvgTwoSlice(vector<int> &A) {
+    int n = A.size();
+    int pos = 0;
+    float min = avgTwoSlice(A,0,1);
+    
+    for(int i=0; i<n-1; i++) {
+        for(int j=i+1; j<n; j++) {
+            float f = avgTwoSlice(A, i, j);
+            if (f < min) {
+                min = f;
+                pos = i;
+            }
+        }
+    }
+    
+    return pos;
+}
+
 int main(int argc, const char * argv[]) {
     int res = solution(999);
     cout << res;
