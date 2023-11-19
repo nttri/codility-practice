@@ -287,6 +287,22 @@ int solutionPassingCars(vector<int> &A) {
     return cnt;
 }
 
+
+/* ====================================== */
+/* Lesson 5: Prefix sums - CountDiv [Med] */
+/* ====================================== */
+
+// 87% only
+int solutionCountDiv(int A, int B, int K) {
+    int cnt = (B-A) / K;
+    if(A%K==0 || B%K==0) {
+        cnt++;
+    } else if(A<K && A!=0 && B>K) {
+        cnt++;
+    }
+    return cnt;
+}
+
 int main(int argc, const char * argv[]) {
     int res = solution(999);
     cout << res;
