@@ -303,6 +303,46 @@ int solutionCountDiv(int A, int B, int K) {
     return cnt;
 }
 
+
+/* =============================================== */
+/* Lesson 5: Prefix sums - GenomicRangeQuery [Med] */
+/* =============================================== */
+
+// 62% only
+vector<int> solutionGenomicRangeQuery(string &S, vector<int> &P, vector<int> &Q) {
+    vector<int> s;
+    for (char c:S) {
+        if (c=='A') {
+            s.push_back(1);
+        } else if (c=='C') {
+            s.push_back(2);
+        } else if (c=='G') {
+            s.push_back(3);
+        } else {
+            s.push_back(4);
+        }
+    }
+    
+    vector<int> res;
+    
+    for(int i=0; i<P.size(); i++) {
+        if(P[i]==Q[i]) {
+            res.push_back(s[P[i]]);
+            continue;
+        }
+        for(int j=1; j<=4; j++) {
+            vector<int>::iterator start = s.begin() + P[i];
+            vector<int>::iterator end = s.begin() + Q[i] + 1;
+            if (find(start, end, j) != end) {
+                res.push_back(j);
+                break;
+            }
+        }
+    }
+    
+    return res;
+}
+
 int main(int argc, const char * argv[]) {
     int res = solution(999);
     cout << res;
