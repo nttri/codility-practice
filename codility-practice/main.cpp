@@ -309,6 +309,7 @@ int solutionCountDiv(int A, int B, int K) {
 /* =============================================== */
 
 // 62% only
+// Solution: https://codesays.com/2014/solution-to-genomic-range-query-by-codility/
 vector<int> solutionGenomicRangeQuery(string &S, vector<int> &P, vector<int> &Q) {
     vector<int> s;
     for (char c:S) {
@@ -349,6 +350,7 @@ vector<int> solutionGenomicRangeQuery(string &S, vector<int> &P, vector<int> &Q)
 /* ============================================ */
 
 // 60% only
+// Solution: https://codesays.com/2014/solution-to-min-avg-two-slice-by-codility/
 float avgTwoSlice(vector<int> &A, int P, int Q) {
     int sum = 0;
     for(int i=P; i<=Q; i++) {
