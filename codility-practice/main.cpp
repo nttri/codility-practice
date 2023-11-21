@@ -9,6 +9,7 @@
 #include <vector>
 #include <algorithm>
 #include <limits.h>
+#include <set>
 
 using namespace std;
 
@@ -376,6 +377,17 @@ int solutionMinAvgTwoSlice(vector<int> &A) {
     }
     
     return pos;
+}
+
+
+/* ============================ */
+/* Lesson 6: Sorting - Distinct */
+/* ============================ */
+
+int solution(vector<int> &A) {
+    if(A.size() == 0) { return 0; }
+    set<int> sA(A.begin(), A.end());
+    return sA.size();
 }
 
 int main(int argc, const char * argv[]) {
