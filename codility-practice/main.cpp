@@ -390,6 +390,40 @@ int solution(vector<int> &A) {
     return sA.size();
 }
 
+
+/* ===================================== */
+/* Lesson 6: Sorting - MaxProductOfThree */
+/* ===================================== */
+
+int solutionMaxProductOfThree(vector<int> &A) {
+    vector<int> B;
+    bool haveZero = false;
+    for (int a : A) {
+        if(a != 0) {
+            B.push_back(a);
+        } else {
+            haveZero = true;
+        }
+    }
+    
+    int n = B.size();
+    if (n<3) { return 0; }
+    if (n==3) { return B[0] * B[1] * B[2]; }
+    
+    sort(B.begin(), B.end());
+    
+    if (B[n-1] < 0 && haveZero) { return 0; }
+    
+    int option1 = B[n-1] * B[n-2] * B[n-3];
+    int option2 = B[0] * B[1] * B[n-1];
+    
+    if (option1 > option2) {
+        return option1;
+    }
+    
+    return option2;
+}
+
 int main(int argc, const char * argv[]) {
     int res = solution(999);
     cout << res;
