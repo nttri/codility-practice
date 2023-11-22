@@ -424,6 +424,29 @@ int solutionMaxProductOfThree(vector<int> &A) {
     return option2;
 }
 
+
+/* ============================ */
+/* Lesson 6: Sorting - Triangle */
+/* ============================ */
+
+// 93% only, should use `long` type to store the sum
+int solutionTriangle(vector<int> &A) {
+    int n = A.size();
+    
+    if (n<3) { return 0; }
+    
+    sort(A.begin(), A.end());
+    
+    for (int i=0; i<n-2; i++) {
+        bool isTriangular = (A[i] + A[i+1] > A[i+2]) && (A[i+2] + A[i+1] > A[i]) && (A[i] + A[i+2] > A[i+1]);
+        if (isTriangular == true) {
+            return 1;
+        }
+    }
+    
+    return 0;
+}
+
 int main(int argc, const char * argv[]) {
     int res = solution(999);
     cout << res;
