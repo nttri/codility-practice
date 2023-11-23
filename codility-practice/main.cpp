@@ -447,6 +447,44 @@ int solutionTriangle(vector<int> &A) {
     return 0;
 }
 
+
+/* =================================================== */
+/* Lesson 6: Sorting - NumberOfDiscIntersections [Med] */
+/* =================================================== */
+
+// 70% only
+bool isIntersect(int c1, int r1, int c2, int r2) {
+    long long le1 = c1 - r1;
+    long long ri1 = c1 + r1;
+    long long le2 = c2 - r2;
+    long long ri2 = c2 + r2;
+    
+    if ((le2 > ri1) || (ri2 < le1)) {
+        return false;
+    }
+    
+    return true;
+}
+
+int solutionNumberOfDiscIntersections(vector<int> &A) {
+    int n = A.size();
+    
+    if (n<2) { return 0; }
+    
+    int cnt = 0;
+    
+    for (int i=0; i<n-1; i++) {
+        for (int j=i+1; j<n; j++) {
+            bool flag = isIntersect(i, A[i], j, A[j]);
+            if (flag) {
+                cnt++;
+            }
+        }
+    }
+    
+    return cnt;
+}
+
 int main(int argc, const char * argv[]) {
     int res = solution(999);
     cout << res;
