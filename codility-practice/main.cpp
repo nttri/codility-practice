@@ -10,6 +10,7 @@
 #include <algorithm>
 #include <limits.h>
 #include <set>
+#include <stack>
 
 using namespace std;
 
@@ -483,6 +484,40 @@ int solutionNumberOfDiscIntersections(vector<int> &A) {
     }
     
     return cnt;
+}
+
+
+/* ====================================== */
+/* Lesson 7: Stacks and Queues - Brackets */
+/* ====================================== */
+
+int solutionBrackets(string &S) {
+    if(S.size() == 0) {
+        return 1;
+    }
+    
+    stack<char> stackChar;
+    
+    for (char c:S) {
+        if (c == '(' || c == '{' || c == '[') {
+            stackChar.push(c);
+        } else {
+            char topChar = stackChar.top();
+            if ((c == ')' && topChar != '(')
+                || (c == ']' && topChar != '[')
+                || (c == '}' && topChar != '{')) {
+                return 0;
+            } else {
+                stackChar.pop();
+            }
+        }
+    }
+    
+    if (stackChar.empty()) {
+        return 1;
+    }
+    
+    return 0;
 }
 
 int main(int argc, const char * argv[]) {
