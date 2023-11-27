@@ -520,6 +520,53 @@ int solutionBrackets(string &S) {
     return 0;
 }
 
+
+/* ================================== */
+/* Lesson 7: Stacks and Queues - Fish */
+/* ================================== */
+
+int solutionFish(vector<int> &A, vector<int> &B) {
+    int n = A.size();
+    
+    if (n==1) { return 1; }
+    
+    stack<pair<int,int>> stac;
+    
+    for (int i=0; i<n; i++) {
+        if (B[i] == 1) {
+            pair<int, int> p(A[i],1);
+            stac.push(p);
+        } else {
+            pair<int, int> newFish(A[i],0);
+            if (stac.size() == 0) {
+                stac.push(newFish);
+                continue;
+            }
+            
+            // newFish.second = 0
+            while (stac.size() != 0) {
+                pair<int,int> topFish = stac.top();
+                if (topFish.second == 0) {   // add to stack
+                    stac.push(newFish);
+                    break;
+                }
+                
+                // topFish.second = 1 & newFish.second = 0
+                if (topFish.first > newFish.first) {  // not add to stack
+                    break;
+                } else {
+                    stac.pop();     // remove top of stack
+                    if (stac.size() == 0) {
+                        stac.push(newFish);
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    
+    return stac.size();
+}
 int main(int argc, const char * argv[]) {
     int res = solution(999);
     cout << res;
