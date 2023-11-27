@@ -567,6 +567,31 @@ int solutionFish(vector<int> &A, vector<int> &B) {
     
     return stac.size();
 }
+
+
+/* ==================================== */
+/* Lesson 7: Stacks and Queues - Nested */
+/* ==================================== */
+
+int solutionNested(string &S) {
+    if (S.size() == 0) { return 1; }
+    
+    stack<char> stackC;
+    
+    for (char c:S) {
+        if (c=='(') {
+            stackC.push(c);
+        } else {
+            if (stackC.size() == 0) { return 0; }
+            stackC.pop();
+        }
+    }
+    
+    if (stackC.size() != 0) { return 0; }
+    
+    return 1;
+}
+
 int main(int argc, const char * argv[]) {
     int res = solution(999);
     cout << res;
