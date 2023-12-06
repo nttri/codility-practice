@@ -592,6 +592,91 @@ int solutionNested(string &S) {
     return 1;
 }
 
+
+/* ==================================== */
+/* ============= Challenges =========== */
+/* ==================================== */
+
+
+// Challenge 01: Ceate palindrome
+
+string challenge_01(string &S) {
+    int n = S.length();
+    int midPos = n/2;
+    bool nOdd = (n%2 == 1);
+    
+    for (int i=0; i<=midPos; i++) {
+        if (i==midPos && nOdd) {
+            return "YES";
+        }
+        char a = S[i], b = S[n - 1 - i];
+        if (a!=b && a!='?' && b!='?') {
+            return "NO";
+        }
+    }
+    return "YES";
+}
+
+
+// Challenge 02: Players movements
+
+int challenge_02(string &S) {
+    int n = S.length();
+    int cnt = 0;
+    bool canMoveLeft = true;
+    
+    for (int i=0; i<n; i++) {
+        char c = S[i];
+        if (c=='^' || c=='D') {
+            cnt++;
+            canMoveLeft = true;
+        } else if (c=='<') {
+            if (canMoveLeft) {
+                cnt++;
+            }
+        } else {
+            if (i==n-1) {
+                cnt++;
+                break;
+            }
+            canMoveLeft = false;
+        }
+    }
+    return cnt;
+}
+
+
+// Challenge 03: Bank transfers
+
+vector<int> challenge_03(string &R, vector<int> V) {
+    int minA = 0;
+    int minB = 0;
+    int balA = 0;
+    int balB = 0;
+    
+    for (int i=0; i<R.length(); i++) {
+        char c = R[i];
+        if (c == 'A') {
+            balA += V[i];
+            balB -= V[i];
+            if (balB < minB) {
+                minB = balB;
+            }
+        } else {
+            balA -= V[i];
+            balB += V[i];
+            if (balA < minA) {
+                minA = balA;
+            }
+        }
+    }
+    
+    vector<int> res;
+    res.push_back(-minA);
+    res.push_back(-minB);
+    return res;
+}
+
 int main(int argc, const char * argv[]) {
     int res = solution(999);
     cout << res;
